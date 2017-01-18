@@ -46,7 +46,11 @@ function Album(){
 	this.getPhoto=function(index){
 		return [photos[index],locations[index]];
 	}
+	this.hasPhoto = function(photo) {
+		return photos.includes(photo);
+	}
 }
+
 var realAlbum1 = new Album();
 var realAlbum2 = new Album();
 var realAlbum3 = new Album();
@@ -54,7 +58,7 @@ realAlbum1.addPhoto("Blue_Water.jpg");
 realAlbum1.addLocation("Mountain Lake in Idaho");
 realAlbum1.addPhoto("Leo.jpg");
 realAlbum1.addLocation("Myrtle Beach");
-realAlbum1.addPhoto("Boat.jpg");
+// realAlbum1.addPhoto("Boat.jpg");
 realAlbum1.addLocation("Atlantic Ocean");
 realAlbum2.addPhoto("Robbie.jpg");
 realAlbum2.addLocation("Boston, MA");
@@ -127,4 +131,14 @@ var Heidi_R = new Teacher(0,12,13,13,36,16)
 // looking for even more then give a user the option to press a button to 
 // animate the images on the page somehow. Have fun!
 
-
+document.addEventListener("DOMContentLoaded",function(){
+	document.getElementById("submit1").onclick = function(){
+		realAlbum1.addPhoto( document.getElementById("img1").value )
+	}
+	document.getElementById("submit2").onclick = function(){
+		console.log(document.getElementById("img2").value)
+		if(realAlbum1.hasPhoto(document.getElementById("img2").value)){
+			document.getElementById("replace").src=document.getElementById("img2").value
+		}
+	}
+});
